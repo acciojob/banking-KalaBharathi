@@ -59,22 +59,10 @@ public class CurrentAccount extends BankAccount{
         return true;
     }
     private String rearrange(String tradeLicenseId){
-        StringBuilder sb = new StringBuilder(tradeLicenseId);
-        for (int i = 1; i < sb.length(); i++) {
-            if (sb.charAt(i) == sb.charAt(i-1)) {
-                // Find the first character in the string that is different from the current character
-                char temp = sb.charAt(i);
-                for (int j = 0; j < i; j++) {
-                    if (sb.charAt(j) != temp) {
-                        // Swap the current character with the different character
-                        sb.setCharAt(i, sb.charAt(j));
-                        sb.setCharAt(j, temp);
-                        break;
-                    }
-                }
-            }
-        }
-        return sb.toString();
+        char[] chars = tradeLicenseId.toCharArray();
+        Collections.shuffle(Arrays.asList(chars));
+        tradeLicenseId = new String(chars);
+        return tradeLicenseId;
     }
 
 }
